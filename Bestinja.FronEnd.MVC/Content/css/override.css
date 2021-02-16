@@ -1,0 +1,28 @@
+.panel {
+    background-color: #f9f9f9;
+    z-index: 9999999;
+}
+
+/*
+.pretty .state label:after,
+.pretty .state label:before {
+    content: '';
+    width: calc(1em + 2px);
+    height: calc(1em + 2px);
+    display: block;
+    box-sizing: border-box;
+    border-radius: 0;
+    border: 1px solid transparent;
+    z-index: 0;
+    position: absolute;
+    right: 0;
+    left: auto;
+    top: calc((0% - (100% - 1em)) - 8%);
+    background-color: transparent;
+}
+*/
+.breadcrumb {
+  
+    background-color: inherit;margin-bottom: 0;
+   
+}

@@ -1,0 +1,29 @@
+﻿@model BestInja.Model.Vendor.EditVendorDto
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="RegisterPageTitle">اطلاعات تماس</h2>
+    </div>
+
+    <div class="col-md-6">
+        <div class="FormItemSection">
+            <label for="Title">نام مکان</label>
+            
+            @Html.TextBoxFor(x=>x.Title,new{ name = "Title", id = "Title" ,@class="myInput"})
+        </div>
+        <span class="text-danger field-validation-valid"
+              data-valmsg-for="Title" data-valmsg-replace="true"></span>
+
+    </div>
+
+    <div class="col-md-6">
+        <div class="FormItemSection">
+            <label for="PhoneNumber">تلفن ثابت</label>
+            <input data-val-required="لطفا تلفن ثابت را وارد نمایید" data-val="true" name="PhoneNumber" id="PhoneNumber" type="text" class="myInput">
+        </div>
+        <span class="text-danger field-validation-valid"
+              data-valmsg-for="PhoneNumber" data-valmsg-replace="true"></span>
+
+    </div>
+    @Html.Partial("~/Views/Vendor/_FacilityEdit.cshtml", Model.Facility)
+
+</div>

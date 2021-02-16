@@ -1,0 +1,27 @@
+﻿@model BestInja.Model.Vendor.AddVendorModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="RegisterPageTitle">دسته بندی خود را انتخاب کنید</h2>
+    </div>
+
+    <div class="col-md-3">
+        <div id="categoryContent" class="FormItemSection">
+            <label for="category">دسته</label>
+            <select data-val-required="لطفا دسته بندی را وارد نمایید" data-val="true" class="lstSelect NiceSelectList required" name="category" id="category" onchange="selectCategory(this);">
+                <option value="0">لطفا انتخاب کنید...</option>
+            </select>
+            <span class="text-danger field-validation-valid"
+                  data-valmsg-for="category" data-valmsg-replace="true"></span>
+            </div>
+    </div>
+    <div class="col-md-3 type hidden">
+        <div class="FormItemSection">
+            <label for="subcategory">نوع</label>
+            <select class="lstSelect NiceSelectList required" name="" id="subcategory" disabled="disabled" onchange="LoadMap();"></select>
+
+        </div>
+
+    </div>
+</div>
+

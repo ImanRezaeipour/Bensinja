@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BestInja.Model.Vendor.VendorListDto>
+@{
+    ViewBag.Title = "پروفایل";
+    Layout = "../../Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mgt140">
+
+    <div class="row">
+     
+        <!--Start AdminSideBar-->
+        @Html.Partial("_SidebarLinks")
+        <!--  AdminSideBar-->
+        <!--Start AdminLeftSection-->
+        <div class="col-md-9">
+            <div class="AdminContent">
+                @Html.Partial("_ServiceList",Model)
+            </div>
+        </div>
+        <!--End AdminLeftSection-->
+
+    </div>
+</div>
+@section scripts
+{
+  
+    @*<script>
+        function getImges(id) {
+            //ToDo appear loading
+            $.ajax({
+                url: "/Profile/_gallery",
+                data: { id: id },
+                contentType: 'application/json',
+                success: function (data) {
+                    $(".AdminContent").empty();
+                    $(".AdminContent").append(data);
+
+                }, error() {
+                    alert("خطا در دریافت اطلاعات");
+                }
+            });
+        }
+
+
+      
+    </script>*@
+    
+}
+@section styles
+{
+<style>
+   
+
+    .tile {
+        width: 50em;
+        margin: 25px;
+        height: 12em;
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.8em;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .tile-img{
+        background-size: cover;
+        background-position: center center;
+        background-repeat: none;
+        width: inherit;
+        height: inherit;
+    }
+
+    .tile-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: white;
+        padding: 1em;
+    }
+
+   
+
+    /* You can ignore anything below this. It does not contribute to the codepen in anyway, It's just so I can center the codepen when it displays and make it look pretty :D */
+
+</style>
+
+}
+

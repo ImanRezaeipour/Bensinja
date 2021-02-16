@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>صفحه اصلی</title>
+
+
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap-rtl.css" rel="stylesheet">
+    <link href="~/Content/css/select2.css" rel="stylesheet">
+    <link href="~/Content/css/slicknav.css" rel="stylesheet">
+
+    <link href="~/Content/css/style.css" rel="stylesheet">
+    <link href="~/Content/css/media.css" rel="stylesheet">
+    <link href="~/Content/css/login-register.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <script src="~/Scripts/CustomJs/modernizr.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @RenderSection("styles",false)
+</head>
+
+<body>
+
+
+    @Html.Partial("~/Views/Shared/_Header.cshtml")
+
+    @RenderBody()
+    @Html.Partial("~/Views/Shared/_Footer.cshtml")
+
+
+    @Scripts.Render("~/bundles/jquery");
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/customJs");
+    @Scripts.Render("~/bundles/jqueryval");
+    @RenderSection("scriptsfilepond", false)
+    @RenderSection("scripts", false)
+
+
+    <script src="~/Scripts/CustomJs/login-register.js"></script>
+    <script>
+
+        $(function () {
+            $('#MenuTop').slicknav({
+                label: 'منو',
+                duration: 1000
+            });
+        });
+        $(document).ready(function () {
+
+            $(".lstSelect").select2({
+                dir: "rtl",
+                width: '100%',
+                placeholder: function () {
+                    $(this).data('placeholder');
+                }
+            });
+            $(function () {
+
+                $(".parallax-demo").parallax();
+
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+﻿<div class="modal fade login" id="loginModal">
+    <input type="hidden" id="userName"/>
+    <div class="modal-dialog login animated">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span class="errors"></span>
+                <div class="box">
+                    <div class="content">
+
+                        <div class="division">
+                            <div class="line l"></div>
+                            <span id="title-login" class="hidden">ورود</span>
+                            <span id="title-register"></span>
+                            <div class="line r"></div>
+                        </div>
+
+                        <ul class="error"></ul>
+                        <div class="form loginBox">
+                            <form method="post" action="/home/login" accept-charset="UTF-8">
+                                <input id="login-userName" class="form-control" type="text" placeholder="موبایل" name="userName">
+                                <input id="password" class="form-control" type="password" placeholder="رمز عبور" name="password">
+                         
+                                
+                                <button type="button"
+                                        class="btn btn-primary btn-login"
+                                        onclick="loginAjax(this)" 
+                                       
+                                        data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> در حال ارسال">
+                                    ورود
+                                </button>
+
+
+                                <input class="btn btn-danger btn-forget" type="button" value="فراموش رمز عبور" onclick="forgetPassword()">
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="registerBox" style="display: none;">
+                        <div class="form">
+                            <div html="{:multipart=>true}" data-remote="true" accept-charset="UTF-8">
+                                <input id="register_userName" class="form-control" type="text" placeholder="شماره موبایل" name="userName">
+                                <input id="register_password" class="form-control" type="password" placeholder="رمز عبور" name="password">
+                                <input id="confirmPassword" class="form-control" type="password" placeholder="تکرار رمز عبور" name="password_confirmation">
+                                <button type="submit" class="btn btn-primary btn-register next" onclick="Register(this)" id="register-btn" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> در حال ارسال">ثبت نام</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="content confirmbox" style="display: none;">
+                        <div class="form">
+                            <div html="{:multipart=>true}" data-remote="true" accept-charset="UTF-8">
+                                <input id="confirmCode" class="form-control" type="text" placeholder="کد تایید" name="confirmCode">
+
+                                <p>ارسال مجدد بعد از <span class="js-timeout"></span>.</p>
+
+                                <button type="submit" onclick="confirmCode(this)" class="btn btn-primary btn-register" id="confirm-btn" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> در حال ارسال">ارسال</button>
+                                <button type="submit" class="btn btn-default btn-register next" onclick="ConfirmAgain(this)" id="again-confirm-btn" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> در حال ارسال">ارسال مجدد</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="box">
+                    <div class="content forgetBox" style="display: none;">
+                        <div class="form">
+                            <div html="{:multipart=>true}" data-remote="true" accept-charset="UTF-8">
+                                <input id="phonenumber" class="form-control" type="text" placeholder="شماره موبایل" name="confirmCode">
+
+                                <button type="submit" class="btn btn-primary btn-register next" onclick="forgetPasswordBtn(this)" id="forget-btn" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> در حال ارسال">ارسال</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="content resetpasswordbox" style="display: none;">
+                        <ul class="error"></ul>
+
+                        <div class="form">
+                            <div html="{:multipart=>true}" data-remote="true" accept-charset="UTF-8">
+                                <input id="new-pass" class="form-control" type="password" placeholder="رمز عبور" name="confirmCode">
+                                <input id="confirm-new-pass" class="form-control" type="password" placeholder="تکرار رمز عبور" name="confirmCode">
+
+                                <button type="submit" class="btn btn-primary btn-register next" onclick="changePassword(this)" id="changepassword-btn" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> در حال ارسال">ارسال</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="forgot login-footer">
+                    <span>
+                        آیا
+                        <a href="javascript: showRegisterForm();">ثبت نام</a>
+                        کرده اید
+                        ؟
+                    </span>
+                </div>
+                <div class="forgot register-footer" style="display: none">
+                    <span>قبلا ثبت نام کرده اید؟</span>
+                    <a href="javascript: showLoginForm();">ورود</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

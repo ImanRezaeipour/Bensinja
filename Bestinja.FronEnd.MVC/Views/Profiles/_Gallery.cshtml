@@ -1,0 +1,229 @@
+﻿@model IEnumerable<BestInja.Model.ImageDto>
+<div class="container mgt140">
+
+    <div class="row">
+        @Html.Partial("_SidebarLinks")
+
+        <div class="col-md-9">
+            <div class="AdminContent">
+
+                <!--Start Upload-->
+                <section class="AdminNews AdminContentSection">
+                    <h2>آپلود تصاویر</h2>
+                    <p>توجه: تصاویر شما پس از تایید مدیریت در سایت نمایش داده میشود</p>
+                    <form>
+                        <div class="UploadSection">
+
+                            <input type="file"
+                                   class="filepond"
+                                   name="filepond"
+                                   multiple
+                                   data-max-file-size="3MB"
+                                   data-max-files="3">
+                            <span class='lblUploadText' id="upload-file-info"></span>
+                        </div>
+
+                        <div class="FormElement cf">
+                            <a href="#" onclick="SendImageToServer('@ViewBag.ServiceId',this);" class="btnCustom pull-left btnOrange"><i class="fa fa-save"></i><span>ذخیره تصاویر</span></a>
+                        </div>
+                    </form>
+                    <hr>
+                </section>
+                <!--End Upload-->
+                <section class="AdminNews AdminContentSection">
+                    <h2>لیست تصاویر</h2>
+                    <p>شما میتوانید تصاویر خود را از این بخش حذف کنید</p>
+                    <ul class="lstImageThumb">
+                        @foreach (var item in Model)
+                        {
+                            <li id="@item.Id">
+                                <div class="imgThumbnail">
+                                    <a class="btnRemoveThumb btn-confirm" data-id="@item.Id" href="#0"><i class="fa fa-close"></i></a>
+                                    <img src="@Url.Content(item.ThumbUrl)" class="img-responsive" alt="">
+                                </div>
+                                @if (item.Status)
+                                {
+                                    <span class="imgStatus imgAccept bgGreen">
+                                        <i class="fa fa-check"></i>
+                                        تایید شده
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="imgStatus imgAccept bgGreen">
+                                        <i class="fa fa-check"></i>
+                                        در انتظار تایید
+                                    </span>
+                                }
+
+                            </li>
+                        }
+
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">قصد حذف این تصویر را دارید</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn-si">بله</button>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">خیر</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles{
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <style>
+        /*
+        * FilePond Custom Styles
+        */
+
+        .filepond--drop-label {
+            color: #4c4e53;
+        }
+
+        .filepond--label-action {
+            text-decoration-color: #babdc0;
+        }
+
+        .filepond--panel-root {
+            background-color: #edf0f4;
+        }
+
+
+        .filepond--root {
+            width: 170px;
+            margin: 0 auto;
+        }
+    </style>
+}
+@section scriptsfilepond
+{
+    <script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js"></script>
+
+
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+
+    <!-- Turn all file input elements into ponds -->
+    <script>
+
+        FilePond.registerPlugin(
+            FilePondPluginImagePreview,
+            FilePondPluginImageValidateSize
+
+        );
+
+        // Select the file input and use
+        // create() to turn it into a pond
+        FilePond.create(document.querySelector('.filepond'),{
+            imagePreviewMaxHeight: 256,
+            imagePreviewMinHeight:44,
+            allowImageValidateSize: true,
+            imagePreviewMaxFileSize:500,
+            imageValidateSizeLabelImageSizeTooBig:"حجم تصاویر وارد شده بیش از حد مجاز است"
+        });
+        FilePond.setOptions({
+            server: {
+                process: {
+                    method: 'POST',
+                    url: '/Profiles/Upload',
+                    withCredentials: false,
+                    headers: {},
+                    timeout: 7000,
+                    onload: function (data) {
+
+                        $(".filepond--action-revert-item-processing").one('click',
+                            function (e) {
+                                var fileValue = $($(this).closest('.filepond--file-wrapper')[0]).find('legend').text();
+                                $.ajax({
+                                    url: '/Profiles/DeleteFile',
+                                    data: { fileName: fileValue },
+
+                                });
+                            });
+                    },
+                    onerror: function () {
+                        alert("error");
+                    },
+                    ondata: null
+                }
+            }
+        });
+
+
+        function SendImageToServer(serviceId) {
+            $(event).css('pointer-events', 'none');
+            $.ajax({
+                url: "/Profiles/UploadToServer",
+                data: { serviceId: serviceId },
+                success: function (data) {
+                    if (data == 1) {
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    }
+                }, error: function () {
+                    alert("خطا در ذخیره تصاویر");
+                }
+            });
+        }
+
+        var modalConfirm = function (callback) {
+            var id;
+            $(".btn-confirm").on("click", function () {
+                $("#mi-modal").modal('show');
+                id = $(this).attr('data-id');
+            });
+
+            $("#modal-btn-si").on("click", function () {
+                callback(true, id);
+                $("#mi-modal").modal('hide');
+            });
+
+            $("#modal-btn-no").on("click", function () {
+                callback(false, id);
+                $("#mi-modal").modal('hide');
+            });
+        };
+
+        modalConfirm(function (confirm, imageId) {
+            if (confirm) {
+                //Acciones si el usuario confirma
+                $.ajax({
+                    url: "/Profiles/DeleteImage",
+                    data: { id: imageId },
+                    type: "get",
+                    success: function () {
+                        $("li#" + imageId).remove();
+                    }, error: function () {
+                        alert("خطا در انجام عملیات");
+                    }
+                })
+            } else {
+                //Acciones si el usuario no confirma
+
+            }
+        });
+        setTimeout(function () {
+            $(".filepond--drop-label>label").css("font-size", "15px").html("آپلود تصاویر");
+        },
+            100);
+
+    </script>
+}
+

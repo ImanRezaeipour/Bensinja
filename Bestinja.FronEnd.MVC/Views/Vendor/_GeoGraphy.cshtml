@@ -1,0 +1,74 @@
+﻿
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="RegisterPageTitle">محله خود را انتخاب کنید</h2>
+    </div>
+
+    <div id="form" class="text-right">
+
+        <h1 class="text-center">ثبت آدرس روی نقشه</h1>
+
+        <div class="col-md-3">
+            <div class="FormItemSection">
+                <label for="provinces">استان</label>
+                <select data-val-required="لطفا استان را وارد نمایید" data-val="true" class="lstSelect NiceSelectList" name="provinces" id="provinces" onchange="selectProvince(this);">
+                    <option value="0">لطفا انتخاب کنید...</option>
+                </select>
+
+
+            </div>
+            <span class="text-danger field-validation-valid"
+                  data-valmsg-for="provinces" data-valmsg-replace="true"></span>
+        </div>
+        <div class="col-md-3">
+            <div class="FormItemSection">
+                <label for="cities">شهر</label>
+                <select data-val-required="لطفا شهر را انتخاب نمایید" data-val="true" class="lstSelect NiceSelectList" name="cities" id="cities" disabled="disabled" onchange="selectCity(this);">
+                    <option value="0">لطفا انتخاب کنید...</option>
+                </select>
+
+            </div>
+            <span class="text-danger field-validation-valid"
+                  data-valmsg-for="cities" data-valmsg-replace="true"></span>
+        </div>
+        <div class="col-md-3">
+            <div class="FormItemSection">
+                <label for="localities">محله</label>
+                <select class="lstSelect NiceSelectList" name="localities" id="localities" disabled="disabled" onchange="selectLocality(this);">
+                    <option value="0">لطفا انتخاب کنید...</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="FormItemSection">
+                <div class="FormItemSection">
+                    <label for="streets">معبر</label>
+                    <input type="text" id="streets" class="myInput" name="streets" placeholder="شروع به تایپ کنید..." disabled="disabled">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 hidden">
+            <div class="form-component">
+                <input class="myInput" type="checkbox" id="toggle-checkbox" onchange="toggleLayer();">نمایش محدوده جستجو روی نقشه
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="RegisterMap" id="map">
+
+        </div>
+    </div>
+    <div id="results">
+
+        <div id="latlng"></div>
+        <div id="parsed-response"></div>
+        <div id="raw-response"></div>
+    </div>
+</div>

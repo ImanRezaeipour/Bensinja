@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BestInja.Model.Vendor.FacilityModel>
+
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="RegisterPageTitle">امکانات خود را انتخاب کنید</h2>
+        <ul class="lstCheckbox">
+            @{
+                string checkeds = null;
+            }
+            @foreach (var item in Model)
+            {
+                <li>
+                    @{
+                        var s = (List<int>)ViewBag.Checked;
+                        var z = s.FirstOrDefault(x => x == item.Id);
+                        if (z != 0)
+                        {
+                            checkeds = "checked";
+                        }
+                    }
+                    <div class="pretty p-default">
+                        <input type="checkbox" value="@item.Id" name="FacilityId" @checkeds />
+                        <div class="state p-success">
+                            <label>@item.Title</label>
+                        </div>
+                    </div>
+                </li>
+
+            }
+
+        </ul>
+    </div>
+</div>

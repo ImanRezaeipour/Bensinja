@@ -1,0 +1,23 @@
+﻿
+@model IEnumerable<BestInja.Model.Vendor.FacilityModel>
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="RegisterPageTitle">امکانات خود را انتخاب کنید</h2>
+        <ul class="lstCheckbox">
+
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="pretty p-default">
+                        <input type="checkbox" value="@item.Id" name="facilities" />
+                        <div class="state p-success">
+                            <label>@item.Title</label>
+                        </div>
+                    </div>
+                </li>
+
+            }
+
+        </ul>
+    </div>
+</div>

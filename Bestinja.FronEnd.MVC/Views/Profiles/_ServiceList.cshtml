@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BestInja.Model.Vendor.VendorListDto>
+
+<a class="btn btn-success" href="@Url.Action("AddVendor","Vendor")">ثبت سرویس</a>
+
+
+@foreach (var item in Model)
+{
+<div class='tile'>
+
+    <div class='tile-info'>
+        <div class="col-md-12">
+            <div class="bg-danger col-md-4">
+                <a href="@Url.Action("_Gallery",new{id=@item.Id})" class="btn btn-primary center">گالری تصاویر</a>
+            </div>
+            <div class="bg-danger col-md-4">
+                <p>@item.Title</p>
+               <p>@item.ServiceState</p>
+            </div>
+            <div class="bg-danger col-md-4">
+                @*<img src="@Url.Content(item.MainImage)"/>*@
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+
+

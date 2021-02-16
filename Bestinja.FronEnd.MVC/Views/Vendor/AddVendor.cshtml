@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNet.Identity
+@model BestInja.Model.Vendor.AddVendorModel
+@{
+    ViewBag.Title = "افزودن سرویس";
+}
+
+
+<div class="container mgt140">
+
+    @using (Html.BeginForm("AddVendor", "vendor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" value="@User.Identity.GetUserId()" name="UserId" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.Partial("~/views/vendor/_Category.cshtml",Model)
+
+        @Html.Partial("~/views/vendor/_GeoGraphy.cshtml",Model)
+
+        @Html.Partial("~/views/vendor/_ContactInformation.cshtml",Model)
+
+        @Html.Partial("~/views/vendor/_ExtraInformation.cshtml",Model)
+
+
+        <input type="submit" value="ارسال" />
+    }
+</div>
+
+@section styles{
+    <link href="~/Content/css/pretty-checkbox.min.css" rel="stylesheet">
+    <link href='https://api.cedarmaps.com/cedarmaps.js/v1.8.0/cedarmaps.css' rel='stylesheet' />
+    <link href='https://demo.cedarmaps.com/websdk/demos/css/L.Control.Locate.min.css' rel='stylesheet' />
+    <link href='https://demo.cedarmaps.com/websdk/demos/css/auto-complete.css' rel='stylesheet' />
+}
+@section scripts
+{
+    <script src="~/Scripts/CustomJs/jquery.nice-select.js"></script>
+    <script src='https://api.cedarmaps.com/cedarmaps.js/v1.8.0/cedarmaps.js'></script>
+    <script src='https://demo.cedarmaps.com/websdk/demos/js/L.Control.Locate.min.js'></script>
+    <script src='https://demo.cedarmaps.com/websdk/demos/js/auto-complete.js'></script>
+    <script src="~/Scripts/Vendor/AddVendor.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+    
+    
+
+}

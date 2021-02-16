@@ -1,0 +1,101 @@
+﻿<header class="FixedHeader">
+    <!--Start TopBar-->
+    <div id="TopBar" class="TopHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="TopBarLinks">
+                        <ul class="lstTopBarLinks">
+                            <li><a href="#">صفحه اصلی</a></li>
+                            <li><a href="#">درباره ما</a></li>
+                            <li><a href="#">گالری تصاویر</a></li>
+                            <li><a href="#">تماس با ما</a></li>
+                            <li><a href="#">راهنما</a></li>
+                        </ul>
+                    </div>
+                </div>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div class="col-md-2">
+                        <span>
+                            <a class="topRegister" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();"><i class="fa fa-plus"></i><span>ثبت تالار</span></a>
+                        </span>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-2">
+                        <section class="UserProfileSection">
+                            <ul class="lstUserProfile MobileCenterItem">
+                                <li>
+                                    <a href="#"><i class="fa fa-angle-down"></i> <span>پنل کاربری</span></a>
+                                    <ul>
+                                        <li><a href="/Profiles/Index"><i class="fa fa-user"></i><span>پروفایل</span></a></li>
+                                        <li><a href="@Url.Action("Index","Profiles")"><i class="fa fa-key"></i><span>تغییر رمز</span></a></li>
+                                        <li><a href="@Url.Action("IdentitySignout","Home")" ><i class="fa fa-sign-out"></i><span>خروج</span></a></li>
+                                    </ul>
+                                </li>
+                              
+                            </ul>
+                        </section>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <!--End TopBar-->
+    <!--Start TopMenu-->
+    <div class="container-fluid bgTopMenu">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="TopMenu">
+                        <ul id="MenuTop" class="lstTopMenu">
+                            <li>
+                                <a href="#">خانه</a>
+                            </li>
+                            <li>
+                                <a href="#">خدمات</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">تالار عروسی</a>
+                                        <ul>
+                                            <li><a href="#">گزینه سطح سوم</a></li>
+                                            <li><a href="#">گزینه سطح چهارم</a></li>
+                                            <li><a href="#">گزینه سطح پنجم</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">ماشین عروس</a></li>
+                                    <li><a href="#">آرایشگاه</a></li>
+                                    <li>
+                                        <a href="#">آتلیه</a>
+                                        <ul>
+                                            <li><a href="#">آتلیه های ارزان</a></li>
+                                            <li><a href="#">آتلیه شیک</a></li>
+                                            <li><a href="#">آتلیه فشن</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">لایه بندی صفحات</a></li>
+                            <li><a href="#">برگزیده</a></li>
+                            <li><a href="#">منتخب هفته</a></li>
+                            <li><a href="#">تماس با ما</a></li>
+                            <li><a href="#">درباره ما</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="TopLogo">
+                        <img src="images/logo.png" class="center-block img-responsive" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End TopMenu-->
+</header>
+
+
+@Html.Partial("_RegisterModal")

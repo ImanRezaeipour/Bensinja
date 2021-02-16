@@ -1,0 +1,13 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "jest package for java script test",
+  "main": "bootstrap.js",
+ 
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "mostafa kazemi",
+  "license": "ISC"
+}
